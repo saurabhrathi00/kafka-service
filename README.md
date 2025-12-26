@@ -69,3 +69,19 @@ Create job-events topic
 2. From other Docker containers
 `   bootstrap.servers=kafka:29092`
 
+
+
+# kafka UI
+We are using AKHQ to monitor and manage kafka clusters. To run AKHQ run below docker command
+Make sure to run this command in the same network where your kafka container is running. In our case its kafka_default network.
+
+`docker run -d \
+--name akhq \
+--network kafka_default \
+-p 8080:8080 \
+-e AKHQ_CONFIGURATION="akhq:
+connections:
+local:
+properties:
+bootstrap.servers: kafka:29092" \
+tchiotludo/akhq:latest`
